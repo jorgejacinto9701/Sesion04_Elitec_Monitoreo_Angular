@@ -1,1 +1,72 @@
-<p>registra-cliente works!</p>
+<div class="container">
+  <form class="mat-dialog-content" id="idFormModalidad" [formGroup]="formsRegistra">
+    <div class="row">
+      <mat-toolbar color="secondary">
+          <span>Registrar Cliente</span>
+      </mat-toolbar>
+  </div>
+
+
+    <div class="row" style="margin-top: 3%">
+        <mat-form-field class="col-lg-4 col-sm-12 mb-sm-4" >
+          <mat-label>Nombre</mat-label>
+          <input matInput [(ngModel)]="cliente.nombre" formControlName="nombre" name="nombre">
+          <mat-hint style="color:red" *ngIf="formsRegistra.controls['nombre'].touched">
+              <span *ngIf="formsRegistra.controls['nombre'].hasError('required')">
+                  El Nombre es requerido
+              </span>
+              <span *ngIf="formsRegistra.controls['nombre'].hasError('pattern')">
+                  El nombre debe de contener 3 a 50 caracteres 
+              </span>
+          </mat-hint>
+        </mat-form-field>
+
+
+        <mat-form-field class="col-lg-4 col-sm-12 mb-sm-4" >
+          <mat-label>DNI</mat-label>
+          <input matInput [(ngModel)]="cliente.dni" formControlName="dni" name="dni">
+          <mat-hint style="color:red" *ngIf="formsRegistra.controls['dni'].touched">
+              <span *ngIf="formsRegistra.controls['dni'].hasError('required')">
+                  El DNI es requerido
+              </span>
+              <span *ngIf="formsRegistra.controls['dni'].hasError('pattern')">
+                  El DNI debe contener 8 dígitos
+              </span>
+          </mat-hint>
+        </mat-form-field>
+
+    </div>
+
+    <div class="row">
+
+
+      <mat-form-field class="col-lg-4 col-sm-12 mb-sm-4">
+        <mat-label>Categoría</mat-label>
+        <mat-select [(ngModel)]="cliente.categoria!.idCategoria" formControlName="categoria" name="categoria">
+            <mat-option value="-1"> [Seleccione] </mat-option>
+            <mat-option *ngFor="let x of listaCategorias" [value]="x.idCategoria">
+                {{x.nombre}}
+            </mat-option>
+        </mat-select>
+        <mat-hint style="color:red" *ngIf="formsRegistra.controls['categoria'].touched">
+          <span *ngIf="formsRegistra.controls['categoria'].hasError('min')">
+            La categoría es requerida
+          </span>
+        </mat-hint>
+    </mat-form-field>
+
+
+    </div>
+
+    
+    <div  mat-dialog-actions>
+        <button mat-raised-button color="primary"  (click)="registra()"  [disabled]="formsRegistra.invalid">
+          Registrar
+        </button>
+  
+    </div>
+
+
+  </form>
+
+</div>

@@ -11,7 +11,7 @@ export class CategoriaService {
   constructor(private http:HttpClient) { }
 
    
-  listaPais():Observable<Categoria[]>{
+  listaCategorias():Observable<Categoria[]>{
     return this.http.get<Categoria[]>("http://localhost:8090/rest/categoria/listaTodos");
   }
 }

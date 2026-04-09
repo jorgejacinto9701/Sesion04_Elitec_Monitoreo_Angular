@@ -1,24 +1,29 @@
 import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing-module';
-import { App } from './app';
-
 import { AppMaterialModule } from './app.material.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RegistraCliente } from './components/registra-cliente/registra-cliente';
+import { AppComponent } from './app.component';
+
 
 @NgModule({
   declarations: [
-    App
+    AppComponent,
+    RegistraCliente
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserModule,
+    FormsModule,
+    AppRoutingModule,
     AppMaterialModule,
+    ReactiveFormsModule 
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
   ],
-  bootstrap: [App]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
